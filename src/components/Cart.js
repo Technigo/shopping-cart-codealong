@@ -1,12 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { CartItem } from './CartItem'
 
 export const Cart = () => {
-  // TODO - fetch products from the cart store
-  const products = []
-
-  // TODO - calculate total from the sum of all products in the cart
-  const totalPrice = 0
+  const products = useSelector((state) => state.cart.items)
+  const totalPrice = useSelector(
+    (state) => state.cart.items.reduce((total, item) => total + (item.price * item.quantity), 0)
+  )
 
   return (
     <div className="cart">
